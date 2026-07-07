@@ -1,0 +1,12 @@
+spring:
+  datasource:
+    url: jdbc:mysql://${MYSQL_HOST:localhost}:${MYSQL_PORT:3306}/${MYSQL_DB:jpa_lesson}
+    username: ${MYSQL_USER:jpa}
+    password: ${MYSQL_PASSWORD:jpa}
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    show-sql: false
+    properties:
+      hibernate:
+        format_sql: true
