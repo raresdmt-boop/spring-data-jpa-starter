@@ -148,6 +148,8 @@ public class Book {
 - `orphanRemoval = true` — o carte scoasă din listă e ștearsă din DB.
 - Ține relația sincronizată din ambele părți (metoda `addBook` setează și `book.setAuthor(this)`).
 
+> Toate tipurile de relații (`@OneToOne`, `@ManyToMany`), best practices (owning vs inverse, cascade, fetch, N+1) și **moștenirea** (`@Inheritance`, `@MappedSuperclass`) sunt tratate în [`RELATII-SI-MOSTENIRE.md`](./RELATII-SI-MOSTENIRE.md).
+
 ## 7. De ce H2 la teste și MySQL la aplicație
 
 - Aplicația (`spring-boot:run`) folosește **MySQL** — baza reală, cu date care persistă.

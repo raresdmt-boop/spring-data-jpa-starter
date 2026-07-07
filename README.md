@@ -1,6 +1,6 @@
 # Spring Data JPA (Lecția 02)
 
-Mapare `@Entity`, `JpaRepository`, derived queries, `@Query` (JPQL), paginare + sortare, relații `@OneToMany` / `@ManyToOne`.
+Mapare `@Entity`, `JpaRepository`, derived queries, `@Query` (JPQL), paginare + sortare, **toate relațiile** (`@OneToMany`/`@ManyToOne`, `@OneToOne`, `@ManyToMany`) cu best practices, și **moștenire** (`@Inheritance`).
 
 Persistență reală pe **MySQL** (via `docker-compose`). Testele rulează pe **H2 in-memory** — rapide și offline, fără să depindă de un MySQL pornit. Proiect Maven **multi-module**; rulezi fiecare modul cu `-pl` din rădăcină.
 
@@ -22,9 +22,9 @@ docker compose ps             # verifică: healthy
 
 | modul | rol | teste |
 |---|---|---|
-| [`teorie/`](./teorie/) | de citit înainte: `THEORY.md`, `GRESELI-COMUNE.md`, `EXERCITII-TEORIE.md` | — |
+| [`teorie/`](./teorie/) | de citit înainte: `THEORY.md`, `RELATII-SI-MOSTENIRE.md`, `GRESELI-COMUNE.md`, `EXERCITII-TEORIE.md` | — |
 | [`exercitii-rezolvate/`](./exercitii-rezolvate/) | demo runnable pe MySQL: vezi JPA lucrând (CRUD, derived, `@Query`, paginare) + exemple rezolvate | ✅ verzi |
-| [`practice/`](./practice/) | 6 exerciții de făcut tu (ex01 mapare → ex06 relații) | 🔴 până le rezolvi |
+| [`practice/`](./practice/) | 29 exerciții de făcut tu (ex01-09 ghidate → practica → provocari fără hint) | 🔴 până le rezolvi |
 | [`challenge/starter/`](./challenge/) | capstone: librărie `Category` 1—* `Book`, schelet + teste de acceptanță | 🔴 până îl rezolvi |
 
 ## Ordinea recomandată
@@ -60,12 +60,13 @@ open teorie/THEORY.md
 - **Derived query** — Spring generează SQL-ul din **numele metodei**: `findByGenre`, `findByPriceGreaterThan`, `countByActiveTrue`, `existsByEmail`, `...OrderBySalaryDesc`.
 - **`@Query`** — când numele nu-ți ajunge, scrii tu JPQL: `@Query("select b from Book b where b.price <= :max")`.
 - **Paginare** — adaugi un parametru `Pageable` și întorci `Page<T>`; sortarea vine din `Pageable` (`Sort`), nu din numele metodei.
-- **Relații** — `@ManyToOne` pe partea care deține cheia străină (owning side), `@OneToMany(mappedBy = ...)` pe partea inversă.
+- **Relații** — `@ManyToOne`/`@OneToMany` (1—*), `@OneToOne` (1—1), `@ManyToMany` (*—*); owning side ține FK/join-table, inverse side folosește `mappedBy`. Best practices în [`teorie/RELATII-SI-MOSTENIRE.md`](./teorie/RELATII-SI-MOSTENIRE.md).
+- **Moștenire** — `@Inheritance` (SINGLE_TABLE / JOINED / TABLE_PER_CLASS) și `@MappedSuperclass`; un repository peste tipul de bază întoarce polimorfic.
 - **H2 pentru teste** — `@DataJpaTest` pornește un context minim doar cu stratul JPA, pe o bază H2 in-memory, și face rollback după fiecare test.
 
 ## Definition of Done
 
-- `./mvnw -pl practice test` → toate cele 16 teste GREEN (ex01-06).
+- `./mvnw -pl practice test` → toate cele 46 de teste GREEN (ex01-09 + practica + provocari).
 - `./mvnw -pl challenge/starter test` → cele 4 teste de acceptanță GREEN.
 - `./mvnw -pl exercitii-rezolvate spring-boot:run` pornește pe MySQL și afișează catalogul.
 - Ai parcurs întrebările din [`teorie/EXERCITII-TEORIE.md`](./teorie/EXERCITII-TEORIE.md).

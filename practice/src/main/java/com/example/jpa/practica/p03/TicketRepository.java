@@ -6,7 +6,13 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface TicketRepository extends JpaRepository<Ticket, Long> {
 
-    List<Ticket> findByStatusIn(List<String> statuses);
+    // Cerință: tichetele al căror status e în lista dată (cuvânt cheie `In`).
+    default List<Ticket> findByStatusIn(List<String> statuses) {
+        throw new UnsupportedOperationException("TODO p03.1");
+    }
 
-    long countByStatus(String status);
+    // Cerință: câte tichete au un anumit status.
+    default long countByStatus(String status) {
+        throw new UnsupportedOperationException("TODO p03.2");
+    }
 }
