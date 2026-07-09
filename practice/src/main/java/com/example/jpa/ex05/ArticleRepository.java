@@ -12,7 +12,10 @@ public interface ArticleRepository extends JpaRepository<Article, Long> {
     //   Metodă derivată pe `category`, cu parametru Pageable și retur Page<Article>.
     //   -> Page<Article> findByCategory(String category, Pageable pageable);
     //   Șterge `default` + corpul și lasă doar semnătura abstractă.
-    default Page<Article> findByCategory(String category, Pageable pageable) {
-        throw new UnsupportedOperationException("TODO ex05.1: findByCategory paginat");
-    }
+
+    Page<Article> findByCategory(String category, Pageable pageable);
+//
+//    default Page<Article> findByCategory(String category, Pageable pageable) {
+//        throw new UnsupportedOperationException("TODO ex05.1: findByCategory paginat");
+//    }
 }

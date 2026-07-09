@@ -1,9 +1,6 @@
 package com.example.jpa.ex06;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 @Entity
 public class Book {
@@ -17,6 +14,7 @@ public class Book {
     // TODO ex06.2: mapează partea "many" — Book deține relația (coloana FK author_id).
     //   Adaugă @ManyToOne (jakarta.persistence.ManyToOne) peste câmpul author.
     //   Fără mapare, Hibernate aruncă la pornire: "Could not determine type for: Author".
+    @ManyToOne
     private Author author;
 
     protected Book() {

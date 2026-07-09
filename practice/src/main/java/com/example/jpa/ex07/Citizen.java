@@ -1,9 +1,6 @@
 package com.example.jpa.ex07;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 @Entity
 public class Citizen {
@@ -20,6 +17,8 @@ public class Citizen {
     //    @JoinColumn(name = "passport_id")
     //  Best practice: partea care deține FK primește @JoinColumn; cascade ALL
     //  salvează pașaportul odată cu cetățeanul.
+    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn(name = "passport_id")
     private Passport passport;
 
     protected Citizen() {

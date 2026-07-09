@@ -11,19 +11,28 @@ public interface TaskRepository extends JpaRepository<Task, Long> {
 
     // TODO ex02.1: task-urile cu done = valoarea dată.
     //   -> List<Task> findByDone(boolean done);
-    default List<Task> findByDone(boolean done) {
-        throw new UnsupportedOperationException("TODO ex02.1: findByDone");
-    }
+
+    List<Task> findByDone(boolean done);
+
+//    default List<Task> findByDone(boolean done) {
+//        throw new UnsupportedOperationException("TODO ex02.1: findByDone");
+//    }
 
     // TODO ex02.2: task-urile cu priority strict mai mare decât valoarea dată.
     //   Cuvântul cheie derivat este `GreaterThan`.
-    default List<Task> findByPriorityGreaterThan(int priority) {
-        throw new UnsupportedOperationException("TODO ex02.2: findByPriorityGreaterThan");
-    }
+
+    List<Task> findByPriorityGreaterThan(int priority);
+
+//    default List<Task> findByPriorityGreaterThan(int priority) {
+//        throw new UnsupportedOperationException("TODO ex02.2: findByPriorityGreaterThan");
+//    }
 
     // TODO ex02.3: task-urile al căror titlu conține fragmentul, indiferent de
     //   majuscule. Cuvinte cheie derivate: `Containing` + `IgnoreCase`.
-    default List<Task> findByTitleContainingIgnoreCase(String fragment) {
-        throw new UnsupportedOperationException("TODO ex02.3: findByTitleContainingIgnoreCase");
-    }
+
+    List<Task> findByTitleContainingIgnoreCase(String fragment);
+
+//    default List<Task> findByTitleContainingIgnoreCase(String fragment) {
+//        throw new UnsupportedOperationException("TODO ex02.3: findByTitleContainingIgnoreCase");
+//    }
 }
