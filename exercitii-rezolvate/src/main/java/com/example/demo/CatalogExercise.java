@@ -2,23 +2,32 @@ package com.example.demo;
 
 import java.util.List;
 
-import org.springframework.boot.CommandLineRunner;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Component;
 
 @Component
-public class CatalogRunner implements CommandLineRunner {
+public class CatalogExercise implements DemoExercise {
 
     private final BookRepository books;
 
-    public CatalogRunner(BookRepository books) {
+    public CatalogExercise(BookRepository books) {
         this.books = books;
     }
 
     @Override
-    public void run(String... args) {
+    public String key() {
+        return "catalog";
+    }
+
+    @Override
+    public String title() {
+        return "@Entity + derived queries + @Query + paginare (catalog de carti)";
+    }
+
+    @Override
+    public void run() {
         books.deleteAll();
         books.saveAll(List.of(
                 new Book("Clean Code", "Robert Martin", "Tech", 180.0, 2008),
@@ -28,20 +37,18 @@ public class CatalogRunner implements CommandLineRunner {
                 new Book("Foundation", "Isaac Asimov", "SF", 75.0, 1951),
                 new Book("Neuromancer", "William Gibson", "SF", 60.0, 1984)));
 
-        System.out.println();
-        System.out.println("=== Spring Data JPA — catalog demo ===");
-        System.out.println("Total carti in DB (findAll):        " + books.count());
+        System.out.println("Total carti in DB (count):          " + books.count());
 
         System.out.println();
-        System.out.println("--- Derived query: findByGenre(\"Tech\") ---");
+        System.out.println("--- derived: findByGenre(\"Tech\") ---");
         books.findByGenre("Tech").forEach(b -> System.out.println("  " + b.getTitle() + " — " + b.getPrice() + " lei"));
 
         System.out.println();
-        System.out.println("--- Derived query: findByAuthorContainingIgnoreCase(\"asimov\") ---");
+        System.out.println("--- derived: findByAuthorContainingIgnoreCase(\"asimov\") ---");
         books.findByAuthorContainingIgnoreCase("asimov").forEach(b -> System.out.println("  " + b.getTitle()));
 
         System.out.println();
-        System.out.println("--- Numarare: countByGenre(\"SF\") = " + books.countByGenre("SF"));
+        System.out.println("--- derived: countByGenre(\"SF\") = " + books.countByGenre("SF"));
 
         System.out.println();
         System.out.println("--- @Query JPQL: findAffordable(<= 100 lei) ---");
@@ -52,10 +59,12 @@ public class CatalogRunner implements CommandLineRunner {
                 + books.averagePriceForGenre("Tech") + " lei");
 
         System.out.println();
-        System.out.println("--- Paginare: prima pagina de 2 carti Tech, sortate crescator dupa pret ---");
+        System.out.println("--- paginare: prima pagina de 2 carti Tech, sortate crescator dupa pret ---");
         Page<Book> page = books.findByGenre("Tech", PageRequest.of(0, 2, Sort.by("price").ascending()));
         System.out.println("  total elemente: " + page.getTotalElements() + ", total pagini: " + page.getTotalPages());
         page.getContent().forEach(b -> System.out.println("  " + b.getTitle() + " — " + b.getPrice() + " lei"));
+
         System.out.println();
+        System.out.println("Inspecteaza in DB:  SELECT * FROM book;");
     }
 }

@@ -33,8 +33,9 @@ docker compose ps             # verifică: healthy
 # 1. citește teoria
 open teorie/THEORY.md
 
-# 2. vezi conceptele rulând concret pe MySQL (necesită docker compose up)
-./mvnw -pl exercitii-rezolvate spring-boot:run
+# 2. vezi fiecare concept rulând concret pe MySQL (necesită docker compose up)
+./mvnw -pl exercitii-rezolvate spring-boot:run                                   # meniul cu exercitiile
+./mvnw -pl exercitii-rezolvate spring-boot:run -Dspring-boot.run.arguments=multilamulti   # doar un exercitiu
 
 # 3. fă exercițiile (detalii în practice/README.md) — rulează pe H2, nu-ți trebuie DB
 ./mvnw -pl practice test
@@ -68,7 +69,7 @@ open teorie/THEORY.md
 
 - `./mvnw -pl practice test` → toate cele 46 de teste GREEN (ex01-09 + practica + provocari).
 - `./mvnw -pl challenge/starter test` → cele 4 teste de acceptanță GREEN.
-- `./mvnw -pl exercitii-rezolvate spring-boot:run` pornește pe MySQL și afișează catalogul.
+- `./mvnw -pl exercitii-rezolvate spring-boot:run -Dspring-boot.run.arguments=<cheie>` pornește pe MySQL fiecare concept separat (catalog, derivate, unulamulti, unulaunu, multilamulti, mostenire) și îi vezi datele în DB.
 - Ai parcurs întrebările din [`teorie/EXERCITII-TEORIE.md`](./teorie/EXERCITII-TEORIE.md).
 - Poți explica:
   - de ce o entitate are nevoie de constructor fără argumente;
