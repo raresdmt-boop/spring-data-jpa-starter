@@ -1,9 +1,6 @@
 package com.example.jpa.ex09;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 // TODO ex09.1: declară strategia de moștenire pe clasa de bază. Adaugă:
 //    @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
@@ -11,6 +8,8 @@ import jakarta.persistence.Id;
 //  SINGLE_TABLE = toate subtipurile într-un singur tabel, deosebite printr-o
 //  coloană discriminator. E strategia implicită și cea mai rapidă (fără JOIN-uri).
 @Entity
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name = "payment_type")
 public abstract class Payment {
 
     @Id

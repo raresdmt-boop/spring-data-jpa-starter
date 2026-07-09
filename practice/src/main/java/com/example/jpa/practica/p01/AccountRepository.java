@@ -8,7 +8,11 @@ public interface AccountRepository extends JpaRepository<Account, Long> {
 
     // Cerință: întoarce contul cu username-ul dat, împachetat în Optional
     // (gol dacă nu există). Metodă derivată; șterge `default` + corpul.
-    default Optional<Account> findByUsername(String username) {
-        throw new UnsupportedOperationException("TODO p01");
-    }
+
+
+    Optional<Account> findByUsername(String username);
+
+//    default Optional<Account> findByUsername(String username) {
+//        throw new UnsupportedOperationException("TODO p01");
+//    }
 }

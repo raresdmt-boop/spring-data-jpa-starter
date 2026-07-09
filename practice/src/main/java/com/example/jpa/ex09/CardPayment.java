@@ -1,9 +1,14 @@
 package com.example.jpa.ex09;
 
+import jakarta.persistence.DiscriminatorValue;
+import jakarta.persistence.Entity;
+
 // TODO ex09.2: fă subtipul o entitate persistabilă. Adaugă:
 //    @Entity
 //    @DiscriminatorValue("CARD")
 //  @DiscriminatorValue e valoarea scrisă în coloana discriminator pentru acest tip.
+@Entity
+@DiscriminatorValue("CARD")
 public class CardPayment extends Payment {
 
     private String cardNumber;

@@ -3,10 +3,7 @@ package com.example.jpa.ex08;
 import java.util.HashSet;
 import java.util.Set;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 @Entity
 public class Film {
@@ -20,6 +17,7 @@ public class Film {
     // TODO ex08.2: Film e INVERSE side. Adaugă @ManyToMany(mappedBy = "films").
     //  `mappedBy` spune că tabelul de legătură e deja definit de câmpul `films`
     //  din Actor — nu-l redefini aici.
+    @ManyToMany(mappedBy = "films")
     private Set<Actor> actors = new HashSet<>();
 
     protected Film() {

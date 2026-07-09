@@ -3,10 +3,7 @@ package com.example.jpa.ex08;
 import java.util.HashSet;
 import java.util.Set;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 @Entity
 public class Actor {
@@ -24,6 +21,10 @@ public class Actor {
     //        inverseJoinColumns = @JoinColumn(name = "film_id"))
     //  Best practice: N—N se ține cu un tabel de legătură (@JoinTable), colecția e
     //  Set (nu List) și NU pui CascadeType.REMOVE (ai șterge filme partajate).
+    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @JoinTable(name = "actor_film",
+    joinColumns = @JoinColumn(name = "actor.id"),
+    inverseJoinColumns = @JoinColumn(name = "film_id"))
     private Set<Film> films = new HashSet<>();
 
     protected Actor() {
