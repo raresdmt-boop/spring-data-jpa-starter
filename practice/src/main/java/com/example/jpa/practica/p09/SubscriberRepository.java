@@ -9,7 +9,10 @@ public interface SubscriberRepository extends JpaRepository<Subscriber, Long> {
 
     // Cerință: abonații cu `active` = valoarea dată, sortați după parametrul Sort
     // primit (nu din numele metodei). Metodă derivată cu al doilea parametru Sort.
-    default List<Subscriber> findByActive(boolean active, Sort sort) {
-        throw new UnsupportedOperationException("TODO p09");
-    }
+
+    List<Subscriber> findByActive(boolean active, Sort sort);
+
+//    default List<Subscriber> findByActive(boolean active, Sort sort) {
+//        throw new UnsupportedOperationException("TODO p09");
+//    }
 }

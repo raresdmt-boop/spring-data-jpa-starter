@@ -33,7 +33,7 @@ class C03PostRepositoryTest {
         repository.save(new Post("Docker pentru incepatori"));
 
         // Act
-        List<Post> found = repository.searchByKeyword("spring");
+        List<Post> found = repository.findByTitleContainingIgnoreCase("spring");
 
         // Assert
         assertEquals(2, found.size());

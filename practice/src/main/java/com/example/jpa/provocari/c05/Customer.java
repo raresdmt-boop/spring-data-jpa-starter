@@ -3,10 +3,7 @@ package com.example.jpa.provocari.c05;
 import java.util.ArrayList;
 import java.util.List;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 @Entity
 public class Customer {
@@ -17,6 +14,7 @@ public class Customer {
 
     private String name;
 
+    @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL,  orphanRemoval = true)
     private List<Purchase> purchases = new ArrayList<>();
 
     protected Customer() {

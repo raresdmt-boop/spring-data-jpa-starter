@@ -1,9 +1,6 @@
 package com.example.jpa.provocari.c05;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 @Entity
 public class Purchase {
@@ -14,6 +11,7 @@ public class Purchase {
 
     private String item;
 
+    @ManyToOne(fetch = FetchType.LAZY)
     private Customer customer;
 
     protected Purchase() {

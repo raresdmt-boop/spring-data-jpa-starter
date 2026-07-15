@@ -8,7 +8,8 @@ public interface CourseRepository extends JpaRepository<Course, Long> {
 
     // Cerință: cursurile dintr-o categorie, paginat. Metodă derivată pe `category`
     // cu parametru Pageable și retur Page<Course>. Sortarea vine din Pageable.
-    default Page<Course> findByCategory(String category, Pageable pageable) {
-        throw new UnsupportedOperationException("TODO p08");
-    }
+
+
+
+    Page<Course> findByCategory(String category, Pageable pageable);
 }

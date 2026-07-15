@@ -8,14 +8,17 @@ public interface TicketRepository extends JpaRepository<Ticket, Long> {
 
     // Cerință: tichetele al căror status e în lista dată (cuvânt cheie `In`).
 
-    List<Ticket> findByStatusIn()
+    List<Ticket> findByStatusIn(List<String> statuses);
 
-    default List<Ticket> findByStatusIn(List<String> statuses) {
-        throw new UnsupportedOperationException("TODO p03.1");
-    }
+//    default List<Ticket> findByStatusIn(List<String> statuses) {
+//        throw new UnsupportedOperationException("TODO p03.1");
+//    }
 
     // Cerință: câte tichete au un anumit status.
-    default long countByStatus(String status) {
-        throw new UnsupportedOperationException("TODO p03.2");
-    }
+
+    long countByStatus(String status);
+
+//    default long countByStatus(String status) {
+//        throw new UnsupportedOperationException("TODO p03.2");
+//    }
 }

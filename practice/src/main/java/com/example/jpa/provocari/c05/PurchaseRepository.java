@@ -6,7 +6,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface PurchaseRepository extends JpaRepository<Purchase, Long> {
 
-    default List<Purchase> findByCustomerName(String name) {
-        throw new UnsupportedOperationException("TODO c05");
-    }
+    List<Purchase> findByCustomerName(String name) ;
 }
